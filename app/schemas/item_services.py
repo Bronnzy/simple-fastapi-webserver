@@ -10,19 +10,6 @@ class ItemCreate(BaseModel):
     discount: float | None = None
     tax: float | None = None
     
-    model_config = {
-        "json_schema_extra": {
-            "examples": [
-                {
-                    'name': "Apple",
-                    'description': "Lorem ipsum",
-                    'price': 46.78,
-                    'discount': 25,
-                    'tax': 12.5
-                }
-            ]
-        }
-    }
 
 
 class ItemResponse(BaseModel):
@@ -35,8 +22,9 @@ class ItemResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
     
-    model_config = {
-        "json_schema_extra": {
+    model_config = ConfigDict(
+        from_attributes=True,
+        json_schema_extra = {
             "examples": [
                 {
                     'guid': "550e8400-e29b-41d4-a716-446655440000",
@@ -50,6 +38,5 @@ class ItemResponse(BaseModel):
                 }
             ]
         }
-    }
-    model_config = ConfigDict(from_attributes=True)
+    )
     
